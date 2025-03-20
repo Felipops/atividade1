@@ -2,11 +2,12 @@ import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Login } from '../../../models/login';
 import { Router } from '@angular/router';
+import { MdbFormsModule } from 'mdb-angular-ui-kit/forms';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule,MdbFormsModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
