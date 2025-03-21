@@ -1,1 +1,45 @@
-<p>alunos-list works!</p>
+
+<br>
+<div class="container">
+    <div class="row">
+        <div class="col-12 azul">
+
+            <div class="card">
+                <div class="card-body alinharDiretira">
+            <h1>Cadastro de alunos</h1><br>
+            <a href="principal/aluno/new" class="btn btn-primary">Novo</a>
+ 
+                <table class="table">
+                    
+                    <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">NOME</th>
+                        <th scope="col">AÇÕES</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        @for (aluno of lista; track $index) {
+                        <tr>
+                            <td>{{aluno.id}}</td>
+                            <td>{{aluno.nome}}</td>
+                            <td class="alinharDiretira"> 
+                                <a href="principal/aluno/edit/{{aluno.id}}" class="btn btn-primary">Editar</a>
+                                <button (click)="delete(aluno)" class="btn btn-danger">Deletar</button>
+                             </td>
+                        </tr>
+                    }
+                   
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+
