@@ -1,1 +1,46 @@
-<p>professores-list works!</p>
+<br>
+<div class="container">
+    <div class="row">
+        <div class="col-12 azul">
+
+            <div class="card">
+                <div class="card-body alinharDiretira">
+            <h1>Cadastro de Professores</h1><br>
+            <a href="principal/professor/new" class="btn btn-primary">Novo</a>
+ 
+                <table class="table">
+                    
+                    <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">NOME</th>
+                        <th scope="col">CPF</th>
+                        <th scope="col">E-mail</th>
+                        <th scope="col">Especialidade</th>
+                        <th scope="col">AÇÕES</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        @for (professor of lista; track $index) {
+                        <tr>
+                            <td>{{professor.id}}</td>
+                            <td>{{professor.nome}}</td>
+                            <td>{{professor.cpf}}</td>
+                            <td>{{professor.email}}</td>
+                            <td>{{professor.especialidade}}</td>
+                            <td class="alinharDiretira"> 
+                                <a href="principal/professor/edit/{{professor.id}}" class="btn btn-primary">Editar</a>
+                                <button (click)="delete(professor)" class="btn btn-danger">Deletar</button>
+                             </td>
+                        </tr>
+                    }
+                   
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+
+        </div>
+    </div>
+</div>
