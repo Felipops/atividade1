@@ -7,7 +7,7 @@
             <div class="card">
                 <div class="card-body alinharDiretira">
             <h1>Cadastro de alunos</h1><br>
-            <a href="principal/aluno/new" class="btn btn-primary">Novo</a>
+            <a href="principal/alunos/new" class="btn btn-primary">Novo</a>
  
                 <table class="table">
                     
@@ -24,7 +24,7 @@
                             <td>{{aluno.id}}</td>
                             <td>{{aluno.nome}}</td>
                             <td class="alinharDiretira"> 
-                                <a href="principal/aluno/edit/{{aluno.id}}" class="btn btn-primary">Editar</a>
+                                <a href="principal/alunos/edit/{{aluno.id}}" class="btn btn-primary">Editar</a>
                                 <button (click)="delete(aluno)" class="btn btn-danger">Deletar</button>
                              </td>
                         </tr>
