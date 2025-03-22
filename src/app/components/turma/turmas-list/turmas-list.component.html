@@ -14,7 +14,9 @@
                     <tr>
                         <th scope="col">ID</th>
                         <th scope="col">NOME</th>
-                        <th scope="col">AÇÕES</th>
+                        <th scope="col">SEMESTRE</th>
+                        <th scope="col">ANO</th>
+                        <th scope="col">TURNO</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -22,6 +24,9 @@
                         <tr>
                             <td>{{turma.id}}</td>
                             <td>{{turma.nome}}</td>
+                            <td>{{turma.semestre}}</td>
+                            <td>{{turma.ano}}</td>
+                            <td>{{turma.turno}}</td>
                             <td class="alinharDiretira"> 
                                 <a href="principal/turmas/edit/{{turma.id}}" class="btn btn-primary">Editar</a>
                                 <button (click)="delete(turma)" class="btn btn-danger">Deletar</button>

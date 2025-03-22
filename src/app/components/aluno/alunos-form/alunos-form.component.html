@@ -13,13 +13,12 @@
 
                         Nome:<br>
                         <input required [(ngModel)]="aluno.nome" type="text" class="form-control" name="nome">
-                        <br>
                         CPF:<br>
                         <input [(ngModel)]="aluno.cpf" type="text" class="form-control" name="cpf">
                         Telefone<br>
-                        <input [(ngModel)]="aluno.telefone" type="text" class="form-control" nome="telefone">
-                        Turma <br>
-                        <input [(ngModel)]="aluno.turma" type="text" class="form-control" nome="turma">
+                        <input [(ngModel)]="aluno.telefone" type="text" class="form-control" name="telefone">
+                        Cadastro Completo <br>
+                        <input [(ngModel)]="aluno.cadastroCompleto" type="text" class="form-control" name="cadastroCompleto">
                         <br />
                         <button (click)="save()" [disabled]="!formulario.valid" class="btn btn-success">Salvar</button>
                     </form>

@@ -22,15 +22,24 @@ export class TurmasListComponent {
 
     let turma1 = new Turma();
     turma1.id = 1;
-    turma1.nome = 'HRV';
+    turma1.nome = '1A';
+    turma1.semestre= '1';
+    turma1.ano= 1;
+    turma1.turno= 'noite';
 
     let turma2 = new Turma();
     turma2.id = 2;
-    turma2.nome = 'HRV';
+    turma2.nome = '2A';
+    turma2.semestre= '2';
+    turma2.ano= 1;
+    turma2.turno= 'noite';
 
     let turma3 = new Turma();
     turma3.id = 3;
-    turma3.nome = 'HRV';
+    turma3.nome = '3A';
+    turma3.semestre= '3';
+    turma3.ano= 2;
+    turma3.turno= 'noite';
 
     this.lista.push(turma1, turma2, turma3);
   

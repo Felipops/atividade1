@@ -24,9 +24,10 @@ export class AlunosFormComponent {
       //AQUI VC VAI CHAMAR O FINDBYID()
       let aluno1 = new Aluno();
       aluno1.id = 1;
-      aluno1.nome = 'HRV';
-      aluno1.cpf = 'HONDA';
-      aluno1.telefone = '999999999';
+      aluno1.nome = 'Joao';
+      aluno1.cpf= '111.111.111-11';
+      aluno1.telefone='(45)99999-9999';
+      aluno1.cadastroCompleto= true;
       this.aluno = aluno1; //setar o objeto no carro do formuljario
     }
   }
