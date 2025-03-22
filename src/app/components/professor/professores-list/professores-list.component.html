@@ -6,7 +6,7 @@
             <div class="card">
                 <div class="card-body alinharDiretira">
             <h1>Cadastro de Professores</h1><br>
-            <a href="principal/professor/new" class="btn btn-primary">Novo</a>
+            <a href="principal/professores/new" class="btn btn-primary">Novo</a>
  
                 <table class="table">
                     
@@ -29,7 +29,7 @@
                             <td>{{professor.email}}</td>
                             <td>{{professor.especialidade}}</td>
                             <td class="alinharDiretira"> 
-                                <a href="principal/professor/edit/{{professor.id}}" class="btn btn-primary">Editar</a>
+                                <a href="principal/professores/edit/{{professor.id}}" class="btn btn-primary">Editar</a>
                                 <button (click)="delete(professor)" class="btn btn-danger">Deletar</button>
                              </td>
                         </tr>
