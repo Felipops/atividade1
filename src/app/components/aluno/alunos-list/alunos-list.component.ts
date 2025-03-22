@@ -20,19 +20,28 @@ export class AlunosListComponent {
   findAll(){
     //DEPOIS EU VOU TER A COMUNICAÇÃO COM O SERVICE 
 
-    let carro1 = new Aluno();
-    carro1.id = 1;
-    carro1.nome = 'HRV';
+    let aluno1 = new Aluno();
+    aluno1.id = 1;
+    aluno1.nome = 'Joao';
+    aluno1.cpf= '111.111.111-11';
+    aluno1.telefone= '(45)99999-9999';
+    aluno1.cadastroCompleto= true;
 
-    let carro2 = new Aluno();
-    carro2.id = 2;
-    carro2.nome = 'HRV';
+    let aluno2 = new Aluno();
+    aluno2.id = 2;
+    aluno2.nome = 'Lucas';
+    aluno2.cpf= '111.111.111-11';
+    aluno2.telefone= '(45)99999-9999';
+    aluno2.cadastroCompleto= true;
 
-    let carro3 = new Aluno();
-    carro3.id = 3;
-    carro3.nome = 'HRV';
+    let aluno3 = new Aluno();
+    aluno3.id = 3;
+    aluno3.nome = 'Pedro';
+    aluno3.cpf= '111.111.111-11';
+    aluno3.telefone= '(45)99999-9999';
+    aluno3.cadastroCompleto= true;
 
-    this.lista.push(carro1, carro2, carro3);
+    this.lista.push(aluno1, aluno2, aluno3);
   
   }
 

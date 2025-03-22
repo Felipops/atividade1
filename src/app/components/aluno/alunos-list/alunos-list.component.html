@@ -15,6 +15,9 @@
                     <tr>
                         <th scope="col">ID</th>
                         <th scope="col">NOME</th>
+                        <th scope="col">CPF</th>
+                        <th scope="col">TELEFONE</th>
+                        <th scope="col">CADASTRO COMPLETO</th>
                         <th scope="col">AÇÕES</th>
                     </tr>
                     </thead>
@@ -23,6 +26,9 @@
                         <tr>
                             <td>{{aluno.id}}</td>
                             <td>{{aluno.nome}}</td>
+                            <td>{{aluno.cpf}}</td>
+                            <td>{{aluno.telefone}}</td>
+                            <td>{{aluno.cadastroCompleto}}</td>
                             <td class="alinharDiretira"> 
                                 <a href="principal/alunos/edit/{{aluno.id}}" class="btn btn-primary">Editar</a>
                                 <button (click)="delete(aluno)" class="btn btn-danger">Deletar</button>
