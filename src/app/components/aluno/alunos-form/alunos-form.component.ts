@@ -2,7 +2,8 @@ import { Component, inject } from '@angular/core';
 import { MdbFormsModule } from 'mdb-angular-ui-kit/forms';
 import { Aluno } from '../../../models/aluno';
 import { FormsModule } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { AlunoService } from '../../../services/aluno.service';
 
 @Component({
   selector: 'app-alunos-form',
@@ -17,28 +18,58 @@ export class AlunosFormComponent {
   aluno: Aluno = new Aluno();
 
   rotaAtivida = inject(ActivatedRoute);
+  roteador = inject(Router);
+  alunoService = inject(AlunoService);
 
-  constructor() {
+  constructor(){
     let id = this.rotaAtivida.snapshot.params['id'];
-    if (id) {
-      //AQUI VC VAI CHAMAR O FINDBYID()
-      let aluno1 = new Aluno();
-      aluno1.id = 1;
-      aluno1.nome = 'Joao';
-      aluno1.cpf= '111.111.111-11';
-      aluno1.telefone='(45)99999-9999';
-      aluno1.cadastroCompleto= true;
-      this.aluno = aluno1; //setar o objeto no carro do formuljario
+    if(id){
+      this.findById(id);
     }
   }
 
-  save() {
-    if (this.aluno.id > 0) {
+  findById(id: number){
+
+    this.alunoService.findById(id).subscribe({
+      next: (alunoRetornado) => {
+        this.aluno = alunoRetornado;
+      },
+      error: (erro) => {
+        alert(erro.error)
+      }
+    });
+
+  }
+
+  save(){
+    if(this.aluno.id > 0){
       // UPDATE
-      alert('estou fazendo um update....');
-    } else {
+      this.alunoService.update(this.aluno, this.aluno.id).subscribe({
+        next: (mensagem) => {
+          alert(mensagem);
+          this.roteador.navigate(['principal/alunos']); 
+          
+        },
+        error: (erro) => {
+          alert(erro.error)
+        }
+      });
+
+
+    }else{
       // SAVE
-      alert('estou fazendo um save');
+      this.alunoService.save(this.aluno).subscribe({
+        next: (mensagem) => {
+          alert(mensagem);
+          this.roteador.navigate(['principal/alunos']); 
+      
+        },
+        error: (erro) => {
+          alert(erro.error)
+        }
+      });
+
+
     }
   }
 

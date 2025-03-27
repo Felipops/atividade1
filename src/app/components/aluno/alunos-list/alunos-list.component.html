@@ -8,6 +8,12 @@
                 <div class="card-body alinharDiretira">
             <h1>Cadastro de alunos</h1><br>
             <a href="principal/alunos/new" class="btn btn-primary">Novo</a>
+
+            <div class="input-group mb-3">
+                <input (keyup)="findByNome()" [(ngModel)]="pesquisa" type="text" class="form-control" placeholder="Digite o nome" aria-label="Recipient's username"
+                  aria-describedby="button-addon2" />
+              
+              </div>'
  
                 <table class="table">
                     
