@@ -6,5 +6,4 @@ export class Professor {
     cpf!: string;
     email!: string;
     especialidade!: string;
-    turma!: Turma[];
 }

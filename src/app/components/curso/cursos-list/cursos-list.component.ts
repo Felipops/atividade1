@@ -1,15 +1,19 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Curso } from '../../../models/curso';
+import { FormsModule } from '@angular/forms';
+import { CursoService } from '../../../services/curso.service';
 
 @Component({
   selector: 'app-cursos-list',
   standalone: true,
-  imports: [],
+  imports: [FormsModule],
   templateUrl: './cursos-list.component.html',
   styleUrl: './cursos-list.component.scss'
 })
 export class CursosListComponent {
 lista: Curso[] = [];
+  
+    cursoService = inject(CursoService);
   
     constructor() {
       this.findAll();
@@ -17,32 +21,32 @@ lista: Curso[] = [];
   
   
     findAll(){
-      //DEPOIS EU VOU TER A COMUNICAÇÃO COM O SERVICE 
-  
-      let curso1 = new Curso();
-      curso1.id = 1;
-      curso1.nome = 'ADS';
       
-
-  
-      let curso2 = new Curso();
-      curso2.id = 2;
-      curso2.nome = 'MATEMATICA';
-      
-  
-      let curso3 = new Curso();
-      curso3.id = 3;
-      curso3.nome = 'fisica';
-    
-  
-      this.lista.push(curso1, curso2, curso3);
-    
+      this.cursoService.findAll().subscribe({
+        next: lista => {
+          this.lista = lista;
+        },
+        error: (erro) => {
+          alert(erro.error)
+        }
+      });
     }
   
-    delete(curso : Curso){
-      let indice = this.lista.findIndex(x => {return x.id == curso.id});
+    delete(curso:Curso){
       if(confirm('Deseja deletar isso aí?')){
-        this.lista.splice(indice, 1); //deletando um objeto na posição INDICE
+  
+        this.cursoService.delete(curso.id).subscribe({
+          next: (mensagem) => {
+            alert(mensagem);
+            this.findAll();
+          },
+          error: (erro) => {
+            alert(erro.error)
+          }
+        });
+  
       }
     }
-}
+  
+  }
+

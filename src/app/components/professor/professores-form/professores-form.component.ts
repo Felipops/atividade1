@@ -1,8 +1,9 @@
 import { Component, inject } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Professor } from '../../../models/professor';
 import { MdbFormsModule } from 'mdb-angular-ui-kit/forms';
 import { FormsModule } from '@angular/forms';
+import { ProfessorService } from '../../../services/professor.service';
 
 @Component({
   selector: 'app-professores-form',
@@ -12,32 +13,65 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './professores-form.component.scss'
 })
 export class ProfessoresFormComponent {
-  professor: Professor = new Professor();
-
-  rotaAtivida = inject(ActivatedRoute);
-
-  constructor() {
-    let id = this.rotaAtivida.snapshot.params['id'];
-    if (id) {
-      //AQUI VC VAI CHAMAR O FINDBYID()
-      let professor1 = new Professor();
-      professor1.id = 1;
-      professor1.nome = 'ronaldo da arte';
-      professor1.cpf = '111.111.111-11';
-      professor1.email = 'joaodaarte@teteu.com';
-      professor1.especialidade = 'ADS';
-      this.professor = professor1; //setar o objeto no carro do formuljario
+  
+  
+    professor: Professor = new Professor();
+  
+    rotaAtivida = inject(ActivatedRoute);
+    roteador = inject(Router);
+    professorService = inject(ProfessorService);
+  
+    constructor(){
+      let id = this.rotaAtivida.snapshot.params['id'];
+      if(id){
+        this.findById(id);
+      }
     }
-  }
-
-  save() {
-    if (this.professor.id > 0) {
-      // UPDATE
-      alert('estou fazendo um update....');
-    } else {
-      // SAVE
-      alert('estou fazendo um save');
+  
+    findById(id: number){
+  
+      this.professorService.findById(id).subscribe({
+        next: (professorRetornado) => {
+          this.professor = professorRetornado;
+        },
+        error: (erro) => {
+          alert(erro.error)
+        }
+      });
+  
     }
+  
+    save(){
+      if(this.professor.id > 0){
+        // UPDATE
+        this.professorService.update(this.professor, this.professor.id).subscribe({
+          next: (mensagem) => {
+            alert(mensagem);
+            this.roteador.navigate(['principal/professores']); 
+            
+          },
+          error: (erro) => {
+            alert(erro.error)
+          }
+        });
+  
+  
+      }else{
+        // SAVE
+        this.professorService.save(this.professor).subscribe({
+          next: (mensagem) => {
+            alert(mensagem);
+            this.roteador.navigate(['principal/professores']); 
+        
+          },
+          error: (erro) => {
+            alert(erro.error)
+          }
+        });
+  
+  
+      }
+    }
+  
   }
-
-}
+  
