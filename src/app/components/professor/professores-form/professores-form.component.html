@@ -9,19 +9,44 @@
                     <h2>Cadastro de Professor</h2>
 
 
-                    <form #formulario="ngForm">
+                    <form #formulario="ngForm" (ngSubmit)="save()">
 
-                        Nome:<br>
-                        <input required [(ngModel)]="professor.nome" type="text" class="form-control" name="nome">
-                        CPF:<br>
-                        <input [(ngModel)]="professor.cpf" type="text" class="form-control" name="cpf">
-                        E-mail<br>
-                        <input [(ngModel)]="professor.email" type="text" class="form-control" name="e-mail">
-                        Especialidade <br>
-                        <input [(ngModel)]="professor.especialidade" type="text" class="form-control" name="especialidade">
+                        <mdb-form-control>
+                          <input mdbInput type="text" name="nome" class="form-control" [(ngModel)]="professor.nome" />
+                          <label mdbLabel class="form-label" for="nome">Nome do professor:</label>
+                        </mdb-form-control>
+            
                         <br />
-                        <button (click)="save()" [disabled]="!formulario.valid" class="btn btn-success">Salvar</button>
-                    </form>
+                        <mdb-form-control>
+                          <input [(ngModel)]="professor.cpf" mdbInput type="text" name="descricao" class="form-control" />
+                          <label mdbLabel class="form-label" for="descricao">CPF:</label>
+                        </mdb-form-control>
+
+                        <br />
+                        <mdb-form-control>
+                          <input [(ngModel)]="professor.email" mdbInput type="text" name="descricao" class="form-control" />
+                          <label mdbLabel class="form-label" for="descricao">Email:</label>
+                        </mdb-form-control>
+
+                        <br />
+                        <mdb-form-control>
+                          <input [(ngModel)]="professor.especialidade" mdbInput type="text" name="descricao" class="form-control" />
+                          <label mdbLabel class="form-label" for="descricao">Especialidade:</label>
+                        </mdb-form-control>
+                        <br />
+            
+            
+                        @if(professor.id > 0){
+                        <button type="submit" [disabled]="!formulario.valid" class="btn btn-success btn-rounded">
+                          <i class="fas fa-save fa-sm"></i> Atualizar
+                        </button>
+                        }@else {
+                        <button type="submit" [disabled]="!formulario.valid" class="btn btn-success btn-rounded">
+                          <i class="fas fa-save fa-sm"></i> Salvar
+                        </button>
+                        }
+            
+                      </form>
 
                 </div>
             </div>

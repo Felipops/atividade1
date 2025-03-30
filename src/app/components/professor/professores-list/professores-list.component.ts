@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
 import { Professor } from '../../../models/professor';
 import { FormsModule } from '@angular/forms';
 import { ProfessorService } from '../../../services/professor.service';
@@ -13,6 +13,9 @@ import { ProfessorService } from '../../../services/professor.service';
 export class ProfessoresListComponent {
   lista: Professor[] = [];
   
+    @Input("modoModal") modoModal: boolean = false;
+    @Output("meuEvento") meuEvento = new EventEmitter();
+
     professorService = inject(ProfessorService);
   
     constructor() {
@@ -47,5 +50,10 @@ export class ProfessoresListComponent {
   
       }
     }
+
+    selecionar(professor: Professor){
+      this.meuEvento.emit(professor);
+    }
+  
   
   }

@@ -5,10 +5,12 @@
 
             <div class="card">
                 <div class="card-body alinharDiretira">
-            <h1>Cadastro de Turmas</h1><br>
-            <a href="principal/turmas/new" class="btn btn-primary">Novo</a>
+            <h1> Cadastro de Turmas</h1><br>
+            <a (click)="new()" class="btn btn-success btn-rounded" mdbRippled>
+                <i class="fas fa-plus fa-sm"></i> Novo
+            </a>
  
-                <table class="table">
+                <table class="table table-striped">
                     
                     <thead>
                     <tr>
@@ -18,7 +20,6 @@
                         <th scope="col">ANO</th>
                         <th scope="col">TURNO</th>
                         <th scope="col">CURSO</th>
-                        <th scope="col">PROFESSOR</th>
                         <th scope="col">AÇÕES</th>
                     </tr>
                     </thead>
@@ -30,11 +31,14 @@
                             <td>{{turma.semestre}}</td>
                             <td>{{turma.ano}}</td>
                             <td>{{turma.turno}}</td>
-                            <td>{{turma.curso}}</td>
-                            <td>{{turma.professores}}</td>
+                            <td>{{turma.curso?.nome}}</td>
                             <td class="alinharDiretira"> 
-                                <a href="principal/turmas/edit/{{turma.id}}" class="btn btn-primary">Editar</a>
-                                <button (click)="delete(turma)" class="btn btn-danger">Deletar</button>
+                                <a (click)="edit(turma)" class="btn btn-primary btn-rounded" mdbRippled>
+                                    <i class="fas fa-pencil fa-sm"></i>
+                                </a>
+                                <button (click)="delete(turma)" class="btn btn-danger btn-rounded" mdbRippled>
+                                    <i class="fas fa-trash fa-sm"></i>
+                                </button>
                              </td>
                         </tr>
                     }
@@ -48,3 +52,21 @@
         </div>
     </div>
 </div>
+
+<ng-template #modalTurmaForm>
+
+    <div class="modal-header">
+        @if(turmaEdit.id > 0){
+            <h5 class="modal-title" id="exampleModalLabel">Editar turma</h5>
+        }@else {
+            <h5 class="modal-title" id="exampleModalLabel">Nova turma</h5>  
+        }
+        <button type="button" class="btn-close" aria-label="Close" (click)="modalRef.close()"></button>
+    </div>
+    <div class="modal-body">
+
+        <app-turmas-form [turma] ="turmaEdit" (meuEvento)="meuEventoTratamento($event)"></app-turmas-form>
+
+    </div>
+
+</ng-template>

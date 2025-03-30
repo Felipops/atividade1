@@ -1,7 +1,8 @@
-import { Component, inject } from '@angular/core';
+import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
 import { Curso } from '../../../models/curso';
 import { FormsModule } from '@angular/forms';
 import { CursoService } from '../../../services/curso.service';
+import { Turma } from '../../../models/turma';
 
 @Component({
   selector: 'app-cursos-list',
@@ -13,6 +14,9 @@ import { CursoService } from '../../../services/curso.service';
 export class CursosListComponent {
 lista: Curso[] = [];
   
+@Input("modoModal") modoModal: boolean = false;
+@Output("meuEvento") meuEvento = new EventEmitter();
+
     cursoService = inject(CursoService);
   
     constructor() {
@@ -48,5 +52,9 @@ lista: Curso[] = [];
       }
     }
   
+    selecionar(curso: Curso){
+      this.meuEvento.emit(curso); //esse disparo vai acionar o método do FORM
+    }
+
   }
 

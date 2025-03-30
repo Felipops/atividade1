@@ -1,36 +1,163 @@
 <br />
 <div class="container">
     <div class="row">
-        <div class="col-4"></div>
+        <div class="col-2"></div>
 
-        <div class="col-4">
+        <div class="col-8">
             <div class="card">
                 <div class="card-body centralizar">
                     <h2>Cadastro de Turmas</h2>
 
 
-                    <form #formulario="ngForm">
+                    <form #formulario="ngForm" (ngSubmit)="save()">
 
-                        Nome:<br>
-                        <input required [(ngModel)]="turma.nome" type="text" class="form-control" name="nome">
-                        Semestre:<br>
-                        <input [(ngModel)]="turma.semestre" type="text" class="form-control" name="semestre">
-                        Ano<br>
-                        <input [(ngModel)]="turma.ano" type="text" class="form-control" name="ano">
-                        Turno <br>
-                        <input [(ngModel)]="turma.turno" type="text" class="form-control" name="turno">
-                        <!-- Curso <br>
-                        <input [(ngModel)]="turma.curso" type="text" class="form-control" name="curso">
-                        Professor <br>
-                        <input [(ngModel)]="turma.professores" type="text" class="form-control" name="professores"> -->
-                        <br />
-                        <button (click)="save()" [disabled]="!formulario.valid" class="btn btn-success">Salvar</button>
-                    </form>
+                        <div class="row">
+            
+                          <div class="col-6">
+                            <mdb-form-control>
+                              <input required [(ngModel)]="turma.nome" mdbInput type="text" name="nome" class="form-control" />
+                              <label mdbLabel class="form-label" for="nome">Nome da Turma:</label>
+                            </mdb-form-control>
+                          </div>
+            
+                          <div class="col-6">
+                            <mdb-form-control>
+                              <input required [(ngModel)]="turma.semestre" mdbInput type="text" name="modelo" class="form-control" />
+                              <label mdbLabel class="form-label" for="modelo">Semestre:</label>
+                            </mdb-form-control>
+                          </div>
+            
+                          <div class="col-6"><br>
+                            <div class="input-group mb-3">
+                              @if(turma.curso){
+                              <div class="border w-100 p-2 text-primary">{{turma.curso.nome}}</div>
+                              <button (click)="buscarCurso()" class="btn btn-secondary" type="button" mdbRipple
+                                rippleColor="danger">
+                                Trocar Curso
+                              </button>
+                              }@else{
+                              <div class="border w-100 p-2">Nenhum curso selecionad!</div>
+                              <button (click)="buscarCurso()" class="btn btn-secondary" type="button" mdbRipple
+                                rippleColor="danger">
+                                Buscar Curso
+                              </button>
+                              }
+                            </div>
+                          </div>
+            
+                          <div class="col-6"><br>
+                            <select [compareWith]="compareId" class="form-control" name="marcas" [(ngModel)]="turma.curso">
+                              <option [value]="undefined">:: Outra forma de N para 1 aqui</option>
+                              @for (curso of listaCursos; track $index) {
+                              <option [ngValue]="curso">{{curso.nome}}</option>
+                              }
+                            </select>
+                          </div>
+            
+            
+            
+                        </div>
+            
+            
+            
+            
+                        <div class="row">
+                          <div class="col-6 alinharAEsquerda">
+                            <h5>Professores:</h5>
+                          </div>
+                          <div class="col-6 alinharADireita">
+                            <button type="button" class="btn btn-secondary btn-rounded" (click)="buscarProfessores()"><i
+                                class="fas fa-plus"></i></button>
+                          </div>
+                        </div>
+                        <table class="border table table-striped">
+                          <thead>
+            
+                            <tr>
+                              <th>Nome</th>
+                              <th>CPF</th>
+                              <th>EMAIL</th>
+                              <th>ESPECIALIDADE</th>
+                              <th></th>
+                            </tr>
+            
+                          </thead>
+            
+                          <tbody>
+            
+                            @for (professor of turma.professores; track $index) {
+                            <tr>
+                              <td>{{professor.nome}}</td>
+                              <td>{{professor.cpf}}</td>
+                              <td>{{professor.email}}</td>
+                              <td>{{professor.especialidade}}</td>
+                              <td>
+                                <button class="btn btn-danger btn-rounded" type="button" (click)="deletarProfessor(professor)">
+                                  <i class="fas fa-trash fa-xs"></i>
+                                </button>
+                              </td>
+                            </tr>
+                            }@empty {
+                            <div class="alinharAEsquerda">
+                              <br><br>
+                              <h5>Nenhum professor vinculado.</h5>
+                              <br><br>
+                            </div>
+                            }
+            
+                          </tbody>
+            
+                        </table>
+            
+            
+            
+                        @if(turma   .id > 0){
+                        <button type="submit" [disabled]="!formulario.valid" class="btn btn-success btn-rounded">
+                          <i class="fas fa-save fa-sm"></i> Atualizar
+                        </button>
+                        }@else {
+                        <button type="submit" [disabled]="!formulario.valid" class="btn btn-success btn-rounded">
+                          <i class="fas fa-save fa-sm"></i> Salvar
+                        </button>
+                        }
+            
+                      </form>
 
                 </div>
             </div>
         </div>
 
-        <div class="col-4"></div>
+        <div class="col-2"></div>
     </div>
 </div>
+
+
+<ng-template #modalCursosList>
+
+    <div class="modal-header">
+      <h5 class="modal-title" id="exampleModalLabel">Listagem de Cursos</h5>
+      <button type="button" class="btn-close" aria-label="Close" (click)="modalRef.close()"></button>
+    </div>
+    <div class="modal-body">
+  
+      <app-cursos-list [modoModal]="true" (meuEvento)="meuEventoTratamento($event)"></app-cursos-list>
+  
+    </div>
+  
+  </ng-template>
+  
+  
+  
+  <ng-template #modalProfessoresList>
+  
+    <div class="modal-header">
+      <h5 class="modal-title" id="exampleModalLabel">Listagem de Professores</h5>
+      <button type="button" class="btn-close" aria-label="Close" (click)="modalRef.close()"></button>
+    </div>
+    <div class="modal-body">
+  
+      <app-professores-list [modoModal]="true" (meuEvento)="meuEventoTratamentoProfessor($event)"></app-professores-list>
+  
+    </div>
+  
+  </ng-template>
