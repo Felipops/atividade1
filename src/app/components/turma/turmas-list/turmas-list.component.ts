@@ -1,54 +1,51 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Turma } from '../../../models/turma';
+import { FormsModule } from '@angular/forms';
+import { TurmaService } from '../../../services/turma.service';
 
 @Component({
   selector: 'app-turmas-list',
   standalone: true,
-  imports: [],
+  imports: [FormsModule],
   templateUrl: './turmas-list.component.html',
   styleUrl: './turmas-list.component.scss'
 })
 export class TurmasListComponent {
+lista: Turma[] = [];
 
-  lista: Turma[] = [];
-
-  constructor() {
-    this.findAll();
-  }
-
-
-  findAll(){
-    //DEPOIS EU VOU TER A COMUNICAÇÃO COM O SERVICE 
-
-    let turma1 = new Turma();
-    turma1.id = 1;
-    turma1.nome = '1A';
-    turma1.semestre= '1';
-    turma1.ano= 1;
-    turma1.turno= 'noite';
-
-    let turma2 = new Turma();
-    turma2.id = 2;
-    turma2.nome = '2A';
-    turma2.semestre= '2';
-    turma2.ano= 1;
-    turma2.turno= 'noite';
-
-    let turma3 = new Turma();
-    turma3.id = 3;
-    turma3.nome = '3A';
-    turma3.semestre= '3';
-    turma3.ano= 2;
-    turma3.turno= 'noite';
-
-    this.lista.push(turma1, turma2, turma3);
+  turmaService = inject(TurmaService);
+  
+    constructor() {
+      this.findAll();
+    }
+  
+  
+    findAll(){
+      
+      this.turmaService.findAll().subscribe({
+        next: lista => {
+          this.lista = lista;
+        },
+        error: (erro) => {
+          alert(erro.error)
+        }
+      });
+    }
+  
+    delete(turma:Turma){
+      if(confirm('Deseja deletar isso aí?')){
+  
+        this.turmaService.delete(turma.id).subscribe({
+          next: (mensagem) => {
+            alert(mensagem);
+            this.findAll();
+          },
+          error: (erro) => {
+            alert(erro.error)
+          }
+        });
+  
+      }
+    }
   
   }
-
-  delete(turma:Turma){
-    let indice = this.lista.findIndex(x => {return x.id == turma.id});
-    if(confirm('Deseja deletar isso aí?')){
-      this.lista.splice(indice, 1); //deletando um objeto na posição INDICE
-    }
-  }
-}

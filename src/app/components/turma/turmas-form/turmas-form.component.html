@@ -19,6 +19,10 @@
                         <input [(ngModel)]="turma.ano" type="text" class="form-control" name="ano">
                         Turno <br>
                         <input [(ngModel)]="turma.turno" type="text" class="form-control" name="turno">
+                        <!-- Curso <br>
+                        <input [(ngModel)]="turma.curso" type="text" class="form-control" name="curso">
+                        Professor <br>
+                        <input [(ngModel)]="turma.professores" type="text" class="form-control" name="professores"> -->
                         <br />
                         <button (click)="save()" [disabled]="!formulario.valid" class="btn btn-success">Salvar</button>
                     </form>

@@ -17,6 +17,8 @@
                         <th scope="col">SEMESTRE</th>
                         <th scope="col">ANO</th>
                         <th scope="col">TURNO</th>
+                        <th scope="col">CURSO</th>
+                        <th scope="col">PROFESSOR</th>
                         <th scope="col">AÇÕES</th>
                     </tr>
                     </thead>
@@ -28,6 +30,8 @@
                             <td>{{turma.semestre}}</td>
                             <td>{{turma.ano}}</td>
                             <td>{{turma.turno}}</td>
+                            <td>{{turma.curso}}</td>
+                            <td>{{turma.professores}}</td>
                             <td class="alinharDiretira"> 
                                 <a href="principal/turmas/edit/{{turma.id}}" class="btn btn-primary">Editar</a>
                                 <button (click)="delete(turma)" class="btn btn-danger">Deletar</button>

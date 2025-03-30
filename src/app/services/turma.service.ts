@@ -10,7 +10,7 @@ export class TurmaService {
 
   http = inject(HttpClient);
 
-  API = 'http://localhost:8080/api/turmas';
+  API = 'http://localhost:8080/api/turma';
 
   constructor() { }
 
