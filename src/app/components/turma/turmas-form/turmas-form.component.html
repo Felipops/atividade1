@@ -13,17 +13,24 @@
 
                         <div class="row">
             
-                          <div class="col-6">
+                          <div class="col-8">
                             <mdb-form-control>
                               <input required [(ngModel)]="turma.nome" mdbInput type="text" name="nome" class="form-control" />
                               <label mdbLabel class="form-label" for="nome">Nome da Turma:</label>
                             </mdb-form-control>
                           </div>
             
-                          <div class="col-6">
+                          <div class="col-8">
                             <mdb-form-control>
-                              <input required [(ngModel)]="turma.semestre" mdbInput type="text" name="modelo" class="form-control" />
+                              <input required [(ngModel)]="turma.semestre" mdbInput type="text" name="semestre" class="form-control" />
                               <label mdbLabel class="form-label" for="modelo">Semestre:</label>
+                            </mdb-form-control>
+                          </div>
+
+                          <div class="col-8">
+                            <mdb-form-control>
+                              <input required [(ngModel)]="turma.ano" mdbInput type="text" name="ano" class="form-control" />
+                              <label mdbLabel class="form-label" for="modelo">Ano:</label>
                             </mdb-form-control>
                           </div>
             
