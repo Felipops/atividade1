@@ -63,6 +63,7 @@ export class TurmasFormComponent {
            next: (mensagem) => {
              alert(mensagem);
              this.roteador.navigate(['principal/turmas']); 
+             this.meuEvento.emit("OK");
              
            },
            error: (erro) => {
@@ -77,6 +78,7 @@ export class TurmasFormComponent {
            next: (mensagem) => {
              alert(mensagem);
              this.roteador.navigate(['principal/turmas']); 
+             this.meuEvento.emit("OK");
          
            },
            error: (erro) => {

@@ -33,6 +33,13 @@
                               <label mdbLabel class="form-label" for="modelo">Ano:</label>
                             </mdb-form-control>
                           </div>
+
+                          <div class="col-8">
+                            <mdb-form-control>
+                              <input required [(ngModel)]="turma.turno" mdbInput type="text" name="turno" class="form-control" />
+                              <label mdbLabel class="form-label" for="modelo">Turno:</label>
+                            </mdb-form-control>
+                          </div>
             
                           <div class="col-6"><br>
                             <div class="input-group mb-3">
@@ -43,7 +50,7 @@
                                 Trocar Curso
                               </button>
                               }@else{
-                              <div class="border w-100 p-2">Nenhum curso selecionad!</div>
+                              <div class="border w-100 p-2">Nenhum curso selecionado!</div>
                               <button (click)="buscarCurso()" class="btn btn-secondary" type="button" mdbRipple
                                 rippleColor="danger">
                                 Buscar Curso
@@ -54,7 +61,7 @@
             
                           <div class="col-6"><br>
                             <select [compareWith]="compareId" class="form-control" name="marcas" [(ngModel)]="turma.curso">
-                              <option [value]="undefined">:: Outra forma de N para 1 aqui</option>
+                              <option [value]="undefined"></option>
                               @for (curso of listaCursos; track $index) {
                               <option [ngValue]="curso">{{curso.nome}}</option>
                               }
